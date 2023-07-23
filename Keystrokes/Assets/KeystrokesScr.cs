@@ -77,7 +77,7 @@ public class KeystrokesScr : MonoBehaviour {
         _displayedWords.Shuffle();
         _liarDisplayIndex = Rnd.Range(0, 5);
         _displayedWords.Insert(_liarDisplayIndex, GenerateLiar());
-        Debug.LogFormat("[Keystrokes #0] The chosen words are {1}.", _loggingId, _displayedWords.Join(", "));
+        Debug.LogFormat("[Keystrokes #{0}] The chosen words are {1}.", _loggingId, _displayedWords.Join(", "));
         _displayedWords = _displayedWords.Select(x => x.ToUpperInvariant().Where(y => _keyboard.Contains(y)).Join("")).ToList();
         UpdateKeys();
     }
@@ -85,7 +85,6 @@ public class KeystrokesScr : MonoBehaviour {
     string GenerateLiar()
     {
         string originalWord = _categories[_liarIndex][Rnd.Range(0, _categories[_liarIndex].Count)];
-        Debug.LogFormat("[Keystrokes #0] The word used to generate the solution display is {1}. DEBUG", _loggingId, originalWord);
         List<char> manipulableWord = originalWord.Select(x => char.ToUpperInvariant(x)).Where(y => _keyboard.Contains(y)).Distinct().ToList();
         List<char> wordNonLetters;
         int numChanges = Rnd.Range(1, 6);
@@ -114,7 +113,7 @@ public class KeystrokesScr : MonoBehaviour {
                 return GenerateLiar();               
             }
         }
-        Debug.LogFormat("[Keystrokes #0] The word used to generate the solution display is {1}.", _loggingId, originalWord);
+        Debug.LogFormat("[Keystrokes #{0}] The word used to generate the solution display is {1}.", _loggingId, originalWord);
         return manipulableWord.Join("");
     }
 
