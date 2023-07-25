@@ -110,9 +110,10 @@ public class KeystrokesScr : MonoBehaviour {
             }
             if (_keyboard.Select(x => i.ToUpperInvariant().Where(y => _keyboard.Contains(y)).Contains(x) == manipulableWord.Contains(x)).Count(x => !x) < 5)
             {
+                _solutionKeys.Clear();
                 return GenerateLiar();               
             }
-        }
+        } 
         Debug.LogFormat("[Keystrokes #{0}] The word used to generate the solution display is {1}.", _loggingId, originalWord);
         return manipulableWord.Join("");
     }
