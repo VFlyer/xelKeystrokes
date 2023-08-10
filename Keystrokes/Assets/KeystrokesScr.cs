@@ -35,8 +35,8 @@ public class KeystrokesScr : MonoBehaviour {
     private int _curDisplayIndex;
     private bool _submitting;
 
-    private int _loggingId = 1;
-    static private int _loggingIdCounter;
+    private int _loggingId;
+    static private int _loggingIdCounter = 1;
     private bool _solved;
 
     void Start() {
@@ -108,7 +108,7 @@ public class KeystrokesScr : MonoBehaviour {
             {
                 continue;
             }
-            if (_keyboard.Select(x => i.ToUpperInvariant().Where(y => _keyboard.Contains(y)).Contains(x) == manipulableWord.Contains(x)).Count(x => !x) < 5)
+            if (_keyboard.Select(x => i.ToUpperInvariant().Where(y => _keyboard.Contains(y)).Contains(x) == manipulableWord.Contains(x)).Count(x => !x) <= 5)
             {
                 _solutionKeys.Clear();
                 return GenerateLiar();               
@@ -264,11 +264,12 @@ public class KeystrokesScr : MonoBehaviour {
             foreach (char i in submission)
             {
                 yield return new WaitForSeconds(0.2f);
-                KeyboardKeys[_keyboard.IndexOf(i)].OnInteract();
                 if (!_solutionKeys.Contains(_keyboard.IndexOf(i)))
                 {
+                    KeyboardKeys[_keyboard.IndexOf(i)].OnInteract();
                     yield break;
                 }
+                KeyboardKeys[_keyboard.IndexOf(i)].OnInteract();
             }
         }
         else
