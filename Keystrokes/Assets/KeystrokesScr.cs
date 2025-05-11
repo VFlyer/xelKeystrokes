@@ -15,7 +15,7 @@ public class KeystrokesScr : MonoBehaviour {
     public Material[] KeyMats;
 
     static readonly List<List<string>> _categories = new List<List<string>>
-        { new List<string> {"Wires","The Button","Keypad","Maze","Memory","Simon Says","Password","Who's On First","Morse Code","Complicated Wires","Wire Sequence","Capacitator Discharge","Venting Gas","Knob","Batteries","Indicators","Ports"},
+        { new List<string> {"Wires","The Button","Keypad","Maze","Memory","Simon Says","Password","Who's On First","Morse Code","Complicated Wires","Wire Sequence", "Capacitor Discharge", "Venting Gas","Knob","Batteries","Indicators","Ports"},
           new List<string> {"Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","India","Juliett","Kilo","Lima","Mike","November","Oscar","Papa","Quebec","Romeo","Sierra","Tango","Uniform","Victor","Whiskey","X-Ray","Yankee","Zulu"},
           new List<string> {"Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scoripo","Sagittarius","Capricorn","Aquarius","Pisces","Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune","Pluto","Fire","Water","Earth","Air"},
           new List<string> {"Miss Scarlett","Professor Plum","Mrs. Peacock","Reverend Green","Colonel Mustard","Mrs. White","Candlestick","Dagger","Lead Pipe","Revolver","Rope","Spanner","Dining Room","Library","Lounge","Kitchen","Study","Conservatory","Hall","Billard Room","Ballroom"},
@@ -23,7 +23,7 @@ public class KeystrokesScr : MonoBehaviour {
           new List<string> {"Colour Flash","Piano Keys","Semaphore","Math","Emoji Math","Lights Out","Switches","Word Scramble", "Anagrams","Combination Lock","Filibuster","Motion Sense","Round Keypad","Listening","Foreign Exchange Rates","Answering Questions","Orientation Cube","Morsematics","Connection Check","Letter Keys","Forget Me Not","Rotary Phone","Astrology"},
           new List<string> {"Ansuz","Berkana","Kenaz","Dagaz","Ehwaz","Fehu","Gebo","Hagalaz","Isa","Jera","Eihwaz","Laguz","Mannaz","Othila","Perthro","Algiz","Raido","Sowulo","Teiwaz","Uruz","Wunjo","Thurisaz"},
           new List<string> {"Buenos Aires", "Brisbane", "Sydney", "Sao Paulo", "Bujumbura","Praia","Whitehorse","Beijing","Quito","Papeete","Tbilisi","Tokyo","Berlin","Tarawa","Managua","Alofi","Lahore","Moscow","Omsk","Edinburgh","Bangkok","Denver","Unalaska"},
-          new List<string> {"Taxi Dispatch","Cow","Exctractor Fan","Train Station","Arcade","Casino","Supermarket","Soccer Match","Tawny Owl","Sewing Machine","Thrush Nightingale","Car Engine","Oboe","Saxophone","Tuba","Marimba","Phone Ringing","Tibetan Nuns","Throat Singing","Dial-up Internet","Police Radio Scanner","Censorship Bleep","Medieval Weapons","Door Closing","Chainsaw","Compressed Air","Servo Motor","Waterfall","Taearing Fabric","Zipper","Vacuum Cleaner","Ballpoint Pen Writng","Rattling Iron Chain","Book Page Turning","Table Tennis","Squeaky Toy", "Helicopter", "Firework Exploding", "Glass Shattering"}
+          new List<string> {"Taxi Dispatch","Cow", "Extractor Fan", "Train Station","Arcade","Casino","Supermarket","Soccer Match","Tawny Owl","Sewing Machine","Thrush Nightingale","Car Engine","Oboe","Saxophone","Tuba","Marimba","Phone Ringing","Tibetan Nuns","Throat Singing","Dial-up Internet","Police Radio Scanner","Censorship Bleep","Medieval Weapons","Door Closing","Chainsaw","Compressed Air","Servo Motor","Waterfall","Tearing Fabric","Zipper","Vacuum Cleaner","Ballpoint Pen Writng","Rattling Iron Chain","Book Page Turning","Table Tennis","Squeaky Toy", "Helicopter", "Firework Exploding", "Glass Shattering"}
         };
     static readonly string _keyboard = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
@@ -99,7 +99,9 @@ public class KeystrokesScr : MonoBehaviour {
         {
             wordNonLetters = _keyboard.Where(x => !manipulableWord.Contains(x)).ToList();
             int additionIndex = Rnd.Range(0, wordNonLetters.Count);
-            _solutionKeys.Add(_keyboard.IndexOf(wordNonLetters[additionIndex]));
+            var nextCharacter = _keyboard.IndexOf(wordNonLetters[additionIndex]);
+            if (_solutionKeys.Contains(nextCharacter)) continue;
+            _solutionKeys.Add(nextCharacter);
             manipulableWord.Add(wordNonLetters[additionIndex]);
         }
         foreach (string i in _categories[_liarIndex])
@@ -212,7 +214,6 @@ public class KeystrokesScr : MonoBehaviour {
         if (command == "toggle")
         {
             yield return null;
-            yield return new WaitForSeconds(2.5f);
             Spacebar.OnInteract();
         }
         else if (command.StartsWith("toggle "))
@@ -234,19 +235,19 @@ public class KeystrokesScr : MonoBehaviour {
             while (step < toggleNum)
             {
                 Spacebar.OnInteract();
-                yield return new WaitForSeconds(0.2f);
+                yield return "trywaitcancel 0.2";
                 step++;
             }
         }
         else if (command.StartsWith("submit "))
         {
             string[] cmdArray = command.Split(' ');
-            if (cmdArray.Length < 2)
+            if (cmdArray.Length > 2)
             {
                 yield return "sendtochaterror Too many paramaters!";
                 yield break;
             }
-            if (cmdArray.Length > 2)
+            else if (cmdArray.Length < 2)
             {
                 yield return "sendtochaterror Specify a submission!";
                 yield break;
