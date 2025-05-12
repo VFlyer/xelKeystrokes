@@ -196,7 +196,7 @@ public class KeystrokesScr : MonoBehaviour {
             return false;
         };
     }
-    string TwitchHelpMessage = "Use '!{0} cycle' to cycle the full list of displays. Use '!{0} toggle N' to to move X displays forward (default if no number is specified is 1). Use '!{0} submit ABC' while on the correct display to submit an answer.";
+    string TwitchHelpMessage = "Use '!{0} cycle' to cycle the full list of displays. Use '!{0} toggle X' to to move X displays forward (1 if no number is specified). Use '!{0} submit ABC' while on the correct display to submit an answer.";
     IEnumerator ProcessTwitchCommand(string command)
     {
         command = command.ToLowerInvariant().Trim();

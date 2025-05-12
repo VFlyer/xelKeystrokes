@@ -15,10 +15,10 @@ MonoBehaviour:
   title: Keystrokes
   author: PANOPTES
   description: "They're called that despite the fact that you don't actually stroke
-    the keys. \nKeystrokes module (xelKeystrokes) version 1.0 by PANOPTES. Twitch
+    the keys. \nKeystrokes module (xelKeystrokes) version 1.0.6 by PANOPTES. Twitch
     Plays supported. Based on the \"What Did I Type?\" series of Sporcle quizzes by
     chaosBEE.\nHTML Manual: https://ktane.timwi.de/HTML/Keystrokes.html\r\nPDF Manual:
     https://ktane.timwi.de/PDF/Keystrokes.pdf"
-  version: 1.0
+  version: 1.0.6
   outputFolder: build
   previewImage: {fileID: 2800000, guid: e22b1ff92eb49604a926c1ee3b3871c9, type: 3}
