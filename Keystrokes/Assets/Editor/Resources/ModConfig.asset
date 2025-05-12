@@ -13,9 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: xelKeystrokes
   title: Keystrokes
-  author: PANOPTES
+  author: PANOPTES, VFlyer
   description: "They're called that despite the fact that you don't actually stroke
-    the keys. \nKeystrokes module (xelKeystrokes) version 1.0.6 by PANOPTES. Twitch
+    the keys. \n[b]This is a reupload of a module by the original author. Please unsubscribe/disable
+    the original module [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3007265957]here.[/url][/b]\nKeystrokes
+    module (xelKeystrokes) version 1.0.6 by PANOPTES. Maintained by VFlyer. Twitch
     Plays supported. Based on the \"What Did I Type?\" series of Sporcle quizzes by
     chaosBEE.\nHTML Manual: https://ktane.timwi.de/HTML/Keystrokes.html\r\nPDF Manual:
     https://ktane.timwi.de/PDF/Keystrokes.pdf"
